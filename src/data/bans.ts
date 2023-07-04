@@ -24,7 +24,7 @@ export async function getBanList(client: Client): Promise<BanList> {
 
 /** Gets all the server bans and stores them in JSON. This needs to be customised so that alt accounts are identified before the model is trained. */
 async function generateBanList(client: Client): Promise<BanList> {
-    const guild = client.guilds.cache.get(config.guildId);
+    const guild = await client.guilds.fetch(config.guildId);
     if (!guild) {
         throw new Error("Failed to find guild specified in config.");
     }
